@@ -1,0 +1,18 @@
+.preview-box {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: large;
+    line-height:400px;
+    display:block;
+    text-align:center;
+}
+
+.preview {
+    width: auto; 
+    height: auto;
+    max-width: 350px;
+    max-height: 350px;
+    margin: auto;
+    vertical-align:middle;
+}
