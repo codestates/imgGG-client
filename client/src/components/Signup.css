@@ -1,0 +1,97 @@
+.su-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);   
+}
+.su-signModal {
+    width: 500px;
+    height: 650px;
+    position: relative;
+    box-sizing: border-box;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;      
+}
+.su-close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+}
+.su-modalDefault {
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.su-sign-info {
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid gray;
+    padding: 10px;
+    box-sizing: border-box;
+}
+input::placeholder {
+    color: gray;
+}
+
+.su-signBtn {
+    height: 40px;
+    cursor: pointer;
+    background-color: gray;
+    margin-top: 15px;
+    border-style: none;
+    margin-bottom: 10px;
+}
+.sign-up{
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    margin: 10px; 
+    text-decoration: none; 
+}
+
+.su-modalSocial {
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.su-facebookBtn {
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgb(66, 103, 178);
+    color: white;
+    margin-top: 10px;
+    border-style: none;
+}
+.su-googleBtn {
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgb(255, 62, 48);
+    color: white;
+    margin-top: 10px;
+    border-style: none;
+}
+.su-twitterBtn {
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgb(0, 172, 237);
+    color: white;
+    margin-top: 10px;
+    border-style: none;
+}
