@@ -20,6 +20,28 @@ class Signin extends React.Component {
     console.log(this.state);
   };
 
+
+  handleLogin = () => {
+    if(this.state.email === "" || this.state.password === "") {
+      this.setState({
+        error: '이메일과 비밀번호를 입력하세요'
+      });
+    } else {
+      this.setState({error: ''});
+    }
+    
+    axios.post("http://localhost:4000/signin", {
+    email: this.state.email,
+    password: this.state.password
+    })
+    .then((result) => {
+      console.log(result);
+    })
+  }
+
+  
+
+
   render() {
     const { open, close } = this.props;
     return (
@@ -35,21 +57,12 @@ class Signin extends React.Component {
                 <input className="sign-info" type="text" placeholder="email" onChange={this.handleInputValue("email")} />
                 <input className="sign-info" type="password" placeholder="password" onChange={this.handleInputValue("password")}/>
                 <Link to='/mypage' className="signBtn" >
-                  <div className="login" >로그인</div>
+                  <div className="login" onClick={this.handleLogin}>로그인</div>
                 </Link>
+                {this.state.error? <div className="alert-box">{this.state.error}</div>:''}
               </div>
-              <div className="modalSocial">
-                <h1>Sign In With</h1>
-                <button className="facebookBtn" >
-                  facebook
-                        </button>
-                <button className="googleBtn" >
-                  Google
-                        </button>
-                <button className="twitterBtn" >
-                  Twitter
-                        </button>
-              </div>
+              
+
             </div>
           </div>
         ) : null}
@@ -58,4 +71,4 @@ class Signin extends React.Component {
   }
 }
 
-export default withRouter(Signin);
+export default Signin;

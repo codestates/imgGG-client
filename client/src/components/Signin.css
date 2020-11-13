@@ -7,8 +7,9 @@
     background: rgba(0, 0, 0, 0.5);   
 }
 .signModal {
-    width: 500px;
-    height: 650px;
+
+    width: 300px;
+    height: 450px;
     position: relative;
     box-sizing: border-box;
     margin: 50px auto;

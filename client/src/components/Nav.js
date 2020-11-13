@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
+import Signin from './Signin';
+import Signup from './Signup';
 
 class Nav extends Component {
   state = {
     isLogin: false,
+    userinfo: null,
+    signinOpen: false,
+    signupOpen: false,
   };
 
   handleLogin = () => {
@@ -18,17 +23,31 @@ class Nav extends Component {
       isLogin: false,
     });
   };
+
+  openSignin = () => {
+    this.setState({ signinOpen: true });
+  };
+  closeSignin = () => {
+    this.setState({ signinOpen: false });
+  };
+  openSignup = () => {
+    this.setState({ signupOpen: true });
+  };
+  closeSignup = () => {
+    this.setState({ signupOpen: false });
+  };
+
   render() {
     return (
       <div className="header">
         <h1 className="logo">ImgGG</h1>
         {!this.state.isLogin ? (
           <div className="menu">
-            <span onClick={this.handleLogin}>로그인</span>
-            <span>회원가입</span>
-            <span>
-              <Link to="/upload">업로드</Link>
-            </span>
+            <span onClick={this.openSignin}>로그인</span>
+            <Signin open={this.state.signinOpen} close={this.closeSignin} />
+            <span onClick={this.openSignup}>회원가입</span>
+            <Signup open={this.state.signupOpen} close={this.closeSignup} />
+
           </div>
         ) : (
           <div className="menu">

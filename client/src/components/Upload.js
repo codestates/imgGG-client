@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { IMGBB_API_KEY } from '../config/config';
 
+
 class Upload extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +15,7 @@ class Upload extends React.Component {
           img : false
         }
     this.handleInputValue = this.handleInputValue.bind(this);
+
     this.handleSubmitImg = this.handleSubmitImg.bind(this);
     }
 

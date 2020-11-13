@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter, Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 
@@ -13,12 +13,32 @@ class Signup extends React.Component {
       confirm: "",
       error: "",
     };
-    this.handleInputValue = this.handleInputValue.bind(this);
-  }
+}
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
     console.log(this.state);
   };
+
+handleSignup = () => {
+    for(let key in this.state) {
+      if(key !== 'error' && this.state[key] === "") {
+        this.setState({
+          error: "모든 항목은 필수입니다"
+        })
+      }else if(this.state.password !== this.state.confirm) {
+        this.setState({
+          error: "패스워드가 틀립니다"
+        })
+      }else {
+        this.setState({error: ""});
+      }
+    }
+    axios.post('http://localhost:4000/signup',{
+      email: this.state.email,
+      password: this.state.password,
+      username: this.state.username,
+    })
+  }
 
   render() {
     const { open, close } = this.props;
@@ -40,18 +60,7 @@ class Signup extends React.Component {
                   <div className="sign-up" >회원가입</div>
                 </Link>
               </div>
-              <div className="su-modalSocial">
-                <h1>Sign Up With</h1>
-                <button className="su-facebookBtn" >
-                  facebook
-                        </button>
-                <button className="su-googleBtn" >
-                  Google
-                        </button>
-                <button className="su-twitterBtn" >
-                  Twitter
-                        </button>
-              </div>
+
             </div>
           </div>
         ) : null}
@@ -59,5 +68,5 @@ class Signup extends React.Component {
     );
   }
 }
+export default Signup;
 
-export default withRouter(Signup);
