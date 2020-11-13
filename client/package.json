@@ -6,6 +6,11 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
     "@testing-library/user-event": "^12.2.0",
+<<<<<<< HEAD
+=======
+    "axios": "^0.21.0",
+    "imgbb-uploader": "^1.1.0",
+>>>>>>> 72b8f7c5b567ffb4f4c18815df5dd1dfac3f55a6
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

@@ -5,7 +5,10 @@
 /.pnp
 .pnp.js
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 72b8f7c5b567ffb4f4c18815df5dd1dfac3f55a6
 # testing
 /coverage
 
@@ -22,7 +25,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 
 
 /.prettierrc
 /src/img
+=======
+>>>>>>> 72b8f7c5b567ffb4f4c18815df5dd1dfac3f55a6
