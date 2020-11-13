@@ -13,14 +13,13 @@ class Signup extends React.Component {
       confirm: "",
       error: "",
     };
-  }
-  
+}
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
     console.log(this.state);
   };
 
-  handleSignup = () => {
+handleSignup = () => {
     for(let key in this.state) {
       if(key !== 'error' && this.state[key] === "") {
         this.setState({
@@ -61,6 +60,7 @@ class Signup extends React.Component {
                   <div className="sign-up" >회원가입</div>
                 </Link>
               </div>
+
             </div>
           </div>
         ) : null}
@@ -68,5 +68,5 @@ class Signup extends React.Component {
     );
   }
 }
-
 export default Signup;
+

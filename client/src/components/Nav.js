@@ -47,6 +47,7 @@ class Nav extends Component {
             <Signin open={this.state.signinOpen} close={this.closeSignin} />
             <span onClick={this.openSignup}>회원가입</span>
             <Signup open={this.state.signupOpen} close={this.closeSignup} />
+
           </div>
         ) : (
           <div className="menu">
@@ -56,7 +57,9 @@ class Nav extends Component {
             <span>
               <Link to="/mypage">마이 페이지</Link>
             </span>
-            <span>업로드</span>
+            <span>
+              <Link to="/upload">업로드</Link>
+            </span>
           </div>
         )}
       </div>

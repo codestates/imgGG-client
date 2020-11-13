@@ -20,6 +20,7 @@ class Signin extends React.Component {
     console.log(this.state);
   };
 
+
   handleLogin = () => {
     if(this.state.email === "" || this.state.password === "") {
       this.setState({
@@ -39,6 +40,7 @@ class Signin extends React.Component {
   }
 
   
+
 
   render() {
     const { open, close } = this.props;
@@ -60,6 +62,7 @@ class Signin extends React.Component {
                 {this.state.error? <div className="alert-box">{this.state.error}</div>:''}
               </div>
               
+
             </div>
           </div>
         ) : null}
