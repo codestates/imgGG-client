@@ -26,6 +26,9 @@ class Nav extends Component {
           <div className="menu">
             <span onClick={this.handleLogin}>로그인</span>
             <span>회원가입</span>
+            <span>
+              <Link to="/upload">업로드</Link>
+            </span>
           </div>
         ) : (
           <div className="menu">
@@ -35,7 +38,9 @@ class Nav extends Component {
             <span>
               <Link to="/mypage">마이 페이지</Link>
             </span>
-            <span>업로드</span>
+            <span>
+              <Link to="/upload">업로드</Link>
+            </span>
           </div>
         )}
       </div>
