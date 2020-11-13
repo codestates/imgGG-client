@@ -58,4 +58,4 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+export default withRouter(Signin);

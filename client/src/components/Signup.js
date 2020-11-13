@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link, withRouter, Router } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 
@@ -60,4 +60,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
