@@ -1,6 +1,5 @@
 import React from "react";
 import "./Upload.css";
-import Nav from './Nav';
 import axios from 'axios'
 import { IMGBB_API_KEY } from '../config/config';
 
@@ -64,7 +63,6 @@ class Upload extends React.Component {
 
   render() {
     return (<div>
-      <Nav />
       <div className="upload-box">
         <div className="preview-box">
           {this.state.file.length !== 0 ? (<img className="preview" src={this.state.previewURL}></img>) : (<div className='pic-preview'>사진 미리보기</div>)}
