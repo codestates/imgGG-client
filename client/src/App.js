@@ -6,6 +6,7 @@ import Upload from './components/Upload';
 import "./App.css";
 import Signin from './components/Signin';
 import Signup from './components/Signup';
+import Imginfo from './components/Imginfo';
 
 class App extends Component {
   state = {
@@ -79,6 +80,8 @@ class App extends Component {
         <Switch>
           <Route path="/mypage" component={Mypage} />
           <Route path="/upload" component={Upload} />
+          <Route path="/info" component={Imginfo} />
+          <Route path="/img_detail/:id" component={Imginfo} />
         </Switch>
 
 
