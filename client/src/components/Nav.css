@@ -1,8 +1,3 @@
-.App {
-    max-width: 1000px;
-    margin: auto;
-}
-
 .header {
     border: 2px solid red;
     display: flex;
@@ -12,7 +7,7 @@
 
 .logo {
     margin-left: 30px;
-    margin-right: 40%;
+    margin-right: 50%;
 }
 
 span {
@@ -28,24 +23,9 @@ span {
 
 .img-list {
     border: 2px solid blue;
-    height: 300px;
-    width: 300px;
-    margin-top: 30px;
-    margin-left: 10px;
-    float: left;
-    padding: 0;
-}
-
-.imagefile {
-    height: 300px;
-    width: 300px;
 }
 
 a {
     text-decoration: none;
     color: black;
-}
-
-.menu-item {
-    display: inline-block;
 }
