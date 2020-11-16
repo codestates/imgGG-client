@@ -15,6 +15,13 @@ class Signin extends React.Component {
     this.handleInputValue = this.handleInputValue.bind(this);
   }
 
+  handleClose = () => {
+    this.setState({
+      error: "",
+    })
+    this.props.close();
+  }
+
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
     console.log(this.state);
@@ -28,14 +35,20 @@ class Signin extends React.Component {
       });
     } else {
       this.setState({ error: '' });
-      axios.post("http://localhost:4002/user/signin", {
+      axios.post("http://localhost:4000/user/signin", {
         email: this.state.email,
         password: this.state.password
+      }, {withCredentials: true})
+      .then((result)=>{
+        console.log(result);
+        this.props.handleResponseSuccess();
       })
-        .then((result) => {
-          console.log(result);
+      .catch(err => {
+        this.setState({
+          error: '아이디 또는 비밀번호가 일치하지 않습니다'
         })
-      // this.props.handleResponseSuccess();
+      })
+
     }
   }
 
@@ -46,7 +59,7 @@ class Signin extends React.Component {
         {open ? (
           <div className="modal">
             <div className="signModal">
-              <span className="close" onClick={close}>
+              <span className="close" onClick={this.handleClose}>
                 ✖
               </span>
               <div className="modalDefault" >
