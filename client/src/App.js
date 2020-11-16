@@ -7,6 +7,8 @@ import Signup from './components/Signup';
 import Upload from './components/Upload';
 import Imginfo from './components/Imginfo';
 import './App.css';
+import axios from 'axios';
+import cookie from 'react-cookies';
 
 class App extends Component {
   state = {
@@ -16,16 +18,45 @@ class App extends Component {
     signupOpen: false,
   };
 
+  componentDidMount = () => {
+    const token = cookie.load('token');
+    if(token) {
+      axios.get('http://localhost:4000/user/info', 
+      { withCredentials: true }
+      )
+      .then((result)=>{
+        this.setState({
+          isLogin: true,
+          userinfo: result
+        })
+      })
+    }
+  }
+
   handleResponseSuccess = () => {
     this.setState({
-      isLogin: true,
+      isLogin: true, 
+      signinOpen: false
     });
-    // this.props.history.push('/mypage');
+    console.log(cookie.load('token'));
+    this.props.history.push('/mypage');
   };
+
+  handleSignupSuccess = () => {
+    this.setState({
+      signupOpen: false,
+    });
+  }
 
   handleLogout = () => {
     this.setState({
       isLogin: false,
+    });
+    axios.post('http://localhost:4000/user/signout',
+    { withCredentials: true })
+    .then(()=> {
+      this.setState({isLogin: false, userinfo: null});
+      this.props.history.push('/');
     });
   };
 
@@ -56,8 +87,8 @@ class App extends Component {
                 <Signin open={this.state.signinOpen} close={this.closeSignin} handleResponseSuccess={this.handleResponseSuccess} />
               </div>
               <div className="menu-item">
-                <span onClick={this.openSignup}>회원가입</span>
-                <Signup open={this.state.signupOpen} close={this.closeSignup} />
+                <span onClick={this.openSignup} >회원가입</span>
+                <Signup open={this.state.signupOpen} close={this.closeSignup} handleSignupSuccess={this.handleSignupSuccess}/>
               </div>
             </div>
           ) : (

@@ -14,36 +14,51 @@ class Signup extends React.Component {
       error: "",
     };
   }
+  
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
     console.log(this.state);
   };
 
+  handleClose = () => {
+    this.setState({
+      error: "",
+    })
+    this.props.close();
+  }
+
   handleSignup = () => {
+    this.setState({ error: ""});
     for (let key in this.state) {
       if (key !== 'error' && this.state[key] === "") {
         this.setState({
           error: "모든 항목은 필수입니다"
         })
         return;
-      } else {
+      } 
+      else {
         this.setState({ error: "" });
       }
     }
-
+    
     if (this.state.password !== this.state.confirm) {
       this.setState({
         error: "패스워드가 틀립니다"
       })
     } else {
       this.setState({ error: "" });
-      axios.post("http://localhost:4002/user/signup", {
+      axios.post("http://localhost:4000/user/signup", {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username
       })
-        .then((result) => {
-          console.log(result);
+        .then(() => {
+          this.props.handleSignupSuccess();
+        })
+        .catch(err =>{
+          this.setState({
+            error: "이미 가입된 이메일입니다"
+          })
         })
     }
   }
@@ -55,7 +70,7 @@ class Signup extends React.Component {
         {open ? (
           <div className="su-modal">
             <div className="su-signModal">
-              <span className="su-close" onClick={close}>
+              <span className="su-close" onClick={this.handleClose}>
                 ✖
                     </span>
               <div className="su-modalDefault" >
