@@ -10,7 +10,7 @@ class Imginfo extends Component {
           <div className="info-box">
         <div className="img-box">
           <div className='pic-preview'>
-            <img src={this.props.location.state.url} className="img-detail"></img>
+            <img src={this.props.location.state.url} className="img-detail" alt="img"></img>
           </div>
         </div>  
         <div className="img-info">

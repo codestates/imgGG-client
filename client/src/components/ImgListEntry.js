@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ImgListEntry = (props) => {
@@ -11,7 +11,7 @@ const ImgListEntry = (props) => {
           alltag: props.imglist.alltag
         },
         }}>
-        <img src={props.imglist.url} className="imagefile"></img>
+        <img src={props.imglist.url} className="imagefile" alt="img"></img>
       </Link>
     </div>
   );

@@ -54,7 +54,7 @@ class Upload extends React.Component {
   handleAddAllTag = () => {
     const tag = this.state.tag
     const alltag = this.state.alltag;
-    if(alltag.indexOf(tag) === -1){
+    if(alltag.indexOf(tag) === -1 && tag !== ''){
       alltag.push(tag);
       this.setState({ tag: null, alltag: alltag });
     }
@@ -75,7 +75,7 @@ class Upload extends React.Component {
     return (<div>
       <div className="upload-box">
         <div className="preview-box">
-          {this.state.file.length !== 0 ? (<img className="preview" src={this.state.previewURL}></img>) : (<div className='pic-preview'>사진 미리보기</div>)}
+          {this.state.file.length !== 0 ? (<img alt="img" className="preview" src={this.state.previewURL}></img>) : (<div className='pic-preview'>사진 미리보기</div>)}
         </div>
         <div className="upload-info">
           <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>

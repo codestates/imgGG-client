@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-        <h1 className="logo">ImgGG</h1>
+        <Link to="/" className="logo"><h1>ImgGG</h1></Link>
         {!this.state.isLogin ? (
           <div className="menu">
             <div>

@@ -5,7 +5,7 @@ const ImgList = (props) => {
   return(
     <div>
       {props.imglist.map((v) => {
-       return <div className="img-list"><ImgListEntry imglist={v} key={v.id} /></div>
+       return <div className="img-list" key={v.id}><ImgListEntry imglist={v} /></div>
     })}
     </div>
   );
