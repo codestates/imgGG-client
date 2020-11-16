@@ -1,5 +1,5 @@
 
-.upload-box {
+.info-box {
     border: 2px solid yellow;;
     width: 100%;
     height: 600px;
@@ -10,12 +10,7 @@
     
 }
 
-.input-btn {
-    margin-top: 30px;
-    margin-left: 80px;
-    margin-bottom: 30px;
-}
-.preview-box {
+.img-box {
     width: 570px;
     height: 570px;
     background-color: rgba(0, 0, 0, 0.2);
@@ -31,44 +26,24 @@
 .pic-preview{
     vertical-align: middle;
 }
-.preview {
-    width: auto; 
-    height: auto;
+.img-detail {
     max-width: 550px;
     max-height: 550px;
-    margin: auto;
-    vertical-align:middle;
+    vertical-align: middle;
+    
 }
-.tag-input{
-    margin-right: 5px;
-    border-style: none;
-    border-bottom: 1px double black;
-    font-size: medium;
-}
-
-.all-tag{
-    border: 1px, solid, black;
-    width: 70%;
-    height: 100px;
-}
-.upload-btn {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.upload-info {
+.img-info {
     box-sizing: border-box;
     float: left;
     width: 35%;
-    height: 50%;
+    height: 90%;
     border: 2px solid blue;
-    margin-top: 14%;
+    margin-top: 3%;
     margin-left: 30px;
     text-align:center;
 }
 
-.tag-form {
+.tag-name {
     height: 20px;
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 15px;
@@ -79,14 +54,4 @@
     margin-left: 3px;
     padding: 2px;
     margin-bottom: 3px;
-}
-
-.delete-tag {
-    color: black;
-    font-size: 15px;
-    width: 15px;
-    height: 20px;
-    margin: 0px;
-    margin-left: 5px;
-    cursor: pointer;
 }

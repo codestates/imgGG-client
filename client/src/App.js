@@ -5,7 +5,9 @@ import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Upload from './components/Upload';
+import Imginfo from './components/Imginfo';
 import './App.css';
+
 class App extends Component {
   state = {
     isLogin: false,
@@ -76,7 +78,11 @@ class App extends Component {
         <Switch>
           <Route path="/mypage" component={Mypage} />
           <Route path="/upload" component={Upload} />
+          <Route path="/info" component={Imginfo} />
+          <Route path="/img_detail/:id" component={Imginfo} />
         </Switch>
+
+
       </div>
     );
   }
