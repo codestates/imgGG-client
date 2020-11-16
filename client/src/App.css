@@ -28,8 +28,17 @@ span {
 
 .img-list {
     border: 2px solid blue;
+    height: 300px;
+    width: 300px;
+    margin-top: 30px;
+    margin-left: 10px;
+    float: left;
+    padding: 0;
 }
-
+.imagefile {
+    height: 300px;
+    width: 300px;
+}
 a {
     text-decoration: none;
     color: black;

@@ -1,10 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ImgListEntry = () => {
+const ImgListEntry = (props) => {
   return (
-    <span className="image-list-entry">
-      <div></div>
-    </span>
+    <div>
+      <Link to={{
+        pathname: "/img_detail/" + props.imglist.id,
+        state : {
+          url: props.imglist.url,
+          alltag: props.imglist.alltag
+        },
+        }}>
+        <img src={props.imglist.url} className="imagefile" alt="img"></img>
+      </Link>
+    </div>
   );
 };
 

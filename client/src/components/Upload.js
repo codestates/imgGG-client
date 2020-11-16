@@ -54,18 +54,28 @@ class Upload extends React.Component {
   handleAddAllTag = () => {
     const tag = this.state.tag
     const alltag = this.state.alltag;
-    alltag.push(tag);
-    this.setState({ tag: null, alltag: alltag })
+    if(alltag.indexOf(tag) === -1 && tag !== ''){
+      alltag.push(tag);
+      this.setState({ tag: null, alltag: alltag });
+    }
     let input = document.querySelector(".tag-input");
     input.value = '';
     console.log(this.state);
+  }
+
+  deleteTag = (value) => {
+    let alltag = this.state.alltag;
+    let idx = alltag.indexOf(value);
+    alltag.splice(idx, 1);
+    this.setState({alltag: alltag})
+    console.log(this.state)
   }
 
   render() {
     return (<div>
       <div className="upload-box">
         <div className="preview-box">
-          {this.state.file.length !== 0 ? (<img className="preview" src={this.state.previewURL}></img>) : (<div className='pic-preview'>사진 미리보기</div>)}
+          {this.state.file.length !== 0 ? (<img alt="img" className="preview" src={this.state.previewURL}></img>) : (<div className='pic-preview'>사진 미리보기</div>)}
         </div>
         <div className="upload-info">
           <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
@@ -73,7 +83,9 @@ class Upload extends React.Component {
           <button type='submit' onClick={this.handleAddAllTag}>추가</button>
           <ul className='all-tag'>
             {(this.state.alltag).map(v => (
-              <div key={v} className="tag-form">{v}</div>
+              <div key={v} className="tag-form">{v}
+                <span onClick={this.deleteTag} className="delete-tag">✖</span>
+              </div>
             ))}
           </ul>
           <div className="upload-btn">
