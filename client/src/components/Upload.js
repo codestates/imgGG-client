@@ -12,7 +12,9 @@ class Upload extends React.Component {
       previewURL: '',
       tag: null,
       alltag: [],
-      img: false
+      img: false,
+      userinfo: this.props.location.state,
+      error: ''
     }
   }
 
@@ -39,11 +41,31 @@ class Upload extends React.Component {
   };
 
   handleSubmitImg = () => {
-    const { file, previewURL, alltag, img } = this.state
-    const imgInfo = { file, previewURL, alltag, img };
-    console.log(imgInfo)
-    
-    window.location.reload();
+    const image_url = this.state.previewURL;
+    const tag_name = this.state.alltag;
+    const userId = this.state.userinfo.id
+    console.log(this.state.img)
+    if (!this.state.img) {
+      this.setState({
+        error: '사진을 추가하세요'
+      });
+    } else {
+      this.setState({ error: '' });
+      axios.post("http://localhost:4000/image/post", {
+        url: image_url,
+        userId: userId,
+        tags: tag_name
+      }, {withCredentials: true})
+      .then((result)=>{
+        console.log(result);
+      })
+      .catch(err => {
+        this.setState({
+          error: '업로드할 사진이 없습니다'
+        })
+      })
+
+    }
   }
 
   handleAddTag = (e) => {
@@ -72,6 +94,7 @@ class Upload extends React.Component {
   }
 
   render() {
+    console.log(this.state.userinfo)
     return (<div>
       <div className="upload-box">
         <div className="preview-box">

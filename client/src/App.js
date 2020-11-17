@@ -25,6 +25,7 @@ class App extends Component {
       { withCredentials: true }
       )
       .then((result)=>{
+        console.log(result.data)
         this.setState({
           isLogin: true,
           userinfo: result.data
@@ -45,8 +46,6 @@ class App extends Component {
       });
       console.log(this.state);
     }) 
-    
-
   };
 
   handleSignupSuccess = () => {
@@ -80,7 +79,8 @@ class App extends Component {
     this.setState({ signupOpen: false });
   };
 
-  render() {
+  render() { 
+    console.log(this.state.userinfo)
     return (
       <div className="App">
         <div className="header">
@@ -112,7 +112,7 @@ class App extends Component {
                   }}>마이 페이지</Link>
                 </span>
                 <span>
-                  <Link to="/upload">업로드</Link>
+                  <Link to={{pathname:"/upload", state: {userinfo: this.state.userinfo}}}>업로드</Link>
                 </span>
               </div>
             )}
@@ -122,7 +122,7 @@ class App extends Component {
           <Route path="/mypage" component={Mypage} />
           <Route path="/upload" component={Upload} />
           <Route path="/info" component={Imginfo} />
-          <Route path="/img_detail/:id" component={Imginfo} />
+          <Route path="/img/info/:id" component={Imginfo} />
         </Switch>
 
 

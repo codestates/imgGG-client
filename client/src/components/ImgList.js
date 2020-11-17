@@ -121,7 +121,7 @@ class ImgList extends Component {
         handleLike={this.handleLike}
         handleChangeRec = {this.handleChangeRec}/>
         {this.state.currentImg.map((v) => {
-        return <div className="img-list" key={v.id}><ImgListEntry imglist={v} /></div>
+        return <div className="img-list" key={v.id}><ImgListEntry allImg={this.props.imglist} imglist={v} /></div>
       })}
       </div>
     );
