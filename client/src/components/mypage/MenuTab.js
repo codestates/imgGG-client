@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import Profile from './Profile';
 import UploadImage from './UploadImage';
 import LikedImage from './LikedImage';
-const content = {
-  0: <Profile />,
-  1: <UploadImage />,
-  2: <LikedImage />,
-};
 
-const tabName = ['프로필', '업로드한 이미지', '좋아요 표시한 이미지'];
+
 
 class MenuTab extends Component {
   state = {
@@ -19,7 +14,15 @@ class MenuTab extends Component {
     this.setState({ activeTab: id });
   };
   render() {
+    const content = {
+      0: <Profile info={this.props.info}/>,
+      1: <UploadImage />,
+      2: <LikedImage />,
+    };
+    const tabName = ['프로필', '업로드한 이미지', '좋아요 표시한 이미지'];
+
     return (
+      
       <div className="tabs-wrapper">
         <ul className="tabs">
           {tabName.map((tab, i) => {

@@ -27,19 +27,26 @@ class App extends Component {
       .then((result)=>{
         this.setState({
           isLogin: true,
-          userinfo: result
+          userinfo: result.data
         })
       })
     }
   }
 
   handleResponseSuccess = () => {
-    this.setState({
-      isLogin: true, 
-      signinOpen: false
-    });
-    console.log(cookie.load('token'));
-    this.props.history.push('/mypage');
+    axios.get('http://localhost:4000/user/info',
+    { withCredentials: true }
+    )
+    .then((result) => {
+      this.setState({
+        isLogin: true, 
+        signinOpen: false,
+        userinfo: result.data
+      });
+      console.log(this.state);
+    }) 
+    
+
   };
 
   handleSignupSuccess = () => {
@@ -49,14 +56,14 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    this.setState({
-      isLogin: false,
-    });
-    axios.post('http://localhost:4000/user/signout',
+    
+    axios.get('http://localhost:4000/user/signout',
+
     { withCredentials: true })
     .then(()=> {
       this.setState({isLogin: false, userinfo: null});
       this.props.history.push('/');
+      console.log(this.state);
     });
   };
 
@@ -97,7 +104,12 @@ class App extends Component {
                   <Link to="/">로그아웃</Link>
                 </span>
                 <span>
-                  <Link to="/mypage">마이 페이지</Link>
+                  <Link to={{
+                    pathname: "/mypage",
+                    state : {
+                     userinfo: this.state.userinfo
+                    },
+                  }}>마이 페이지</Link>
                 </span>
                 <span>
                   <Link to="/upload">업로드</Link>
