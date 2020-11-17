@@ -1,41 +1,51 @@
-import React, { Component } from 'react';
-import '../App.css';
+import React from 'react';
+import './Search.css';
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    };
+const Search = (props) => {
+  let allofTag = [];
+  let recommandTag = [];
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSearchClick = this.handleSearchClick.bind(this);
+  for (let i = 0; i < props.currentImg.allImg.length; i++) {
+    allofTag = allofTag.concat(props.currentImg.allImg[i].alltag);
   }
 
-  handleInputChange(e) {
-    this.setState({
-      value: e.target.value,
-    });
+  for (let j = 0; j < allofTag.length; j++) {
+    if (recommandTag.indexOf(allofTag[j]) === -1) {
+      if (allofTag[j].indexOf(props.currentImg.value) !== -1) {
+        recommandTag.push(allofTag[j]);
+      }
+    }
   }
-
-  handleSearchClick(e) {
-    this.props.handleSearchInputChange(this.state.value);
-  }
-  render() {
-    return (
-      <div className="search-bar">
-        <input
-          className="form-control"
-          type="text"
-          value={this.state.value}
-          onChange={this.handleInputChange}
-        />
-        <button className="btn hidden-sm-down" onClick={this.handleSearchClick}>
-          검색
+  console.log(allofTag);
+  console.log(recommandTag);
+  return (
+    <div className="search-bar">
+      <input
+        className="form-control"
+        type="text"
+        placeholder="태그를 입력하세요"
+        value={props.currentImg.value}
+        onChange={props.handleInputChange}
+      />
+      <button className="btn hidden-sm-down" onClick={props.handleSearchClick}>
+        검색
         </button>
+      <div className="recommand">
+        <div className="recommand-tag">
+          {(recommandTag[0] && props.currentImg.value !== '') ? <div>태그추천</div> : null}
+          {(recommandTag[0] && props.currentImg.value !== '') ? (recommandTag).map((tag,index) => (
+        <span key={index} className="map-tag" onClick={()=>{
+          document.querySelector(".form-control").value = tag; props.handleChangeRec()
+        }}>{tag}</span>)) : null}
+        </div>
       </div>
-    );
-  }
+      <div>
+        <button onClick={props.handleRecently}>{`${props.currentImg.recently ? '최신순' : '오래된순'}`}</button>
+        <button onClick={props.handleLike}>{`${!props.currentImg.likely ? '싫어요' : '좋아요'}`}</button>
+        <button onClick={props.handleGotoBack}>새로고침</button>
+      </div>
+    </div>
+  );
 }
 
 export default Search;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ImgList from './ImgList';
-import Search from './Search';
 import { fakeData } from './mypage/fakedata'
 
 class Mainpage extends Component {
@@ -12,7 +11,6 @@ class Mainpage extends Component {
   render() {
     return (
       <div>
-        <Search />
         <ImgList imglist={this.state.saveImg}/>
       </div>
     );
