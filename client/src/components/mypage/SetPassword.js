@@ -57,16 +57,16 @@ class SetPassword extends Component {
       <div className="set-password">
         <h5>비밀번호 변경</h5>
         <div>
-          <input type="password" placeholder="현재 비밀번호" onChange={this.handleInputValue("oldPassword")}></input>
+          <input className="pwchange" type="password" placeholder="현재 비밀번호" onChange={this.handleInputValue("oldPassword")}></input>
         </div>
         <div>
-          <input type="password" placeholder="새 비밀번호" onChange={this.handleInputValue("newPassword")}></input>
+          <input className="pwchange" type="password" placeholder="새 비밀번호" onChange={this.handleInputValue("newPassword")}></input>
         </div>
         <div>
-          <input type="password" placeholder="새 비밀번호 확인" onChange={this.handleInputValue("confirm")}></input>
+          <input className="pwchange" type="password" placeholder="새 비밀번호 확인" onChange={this.handleInputValue("confirm")}></input>
         </div>
         <div>
-          <button onClick={this.handleChangePassword}>변경</button>
+          <button className="change" onClick={this.handleChangePassword}>변경</button>
           {this.state.error ? <div className="alert-box">{this.state.error}</div> : ''}
         </div>
       </div>
