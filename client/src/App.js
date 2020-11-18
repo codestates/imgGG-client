@@ -56,8 +56,8 @@ class App extends Component {
 
   handleLogout = () => {
     
-    axios.get('http://localhost:4000/user/signout',
-
+    axios.post('http://localhost:4000/user/signout',
+    {},
     { withCredentials: true })
     .then(()=> {
       this.setState({isLogin: false, userinfo: null});
@@ -80,11 +80,10 @@ class App extends Component {
   };
 
   render() { 
-    console.log(this.state.userinfo)
     return (
       <div className="App">
         <div className="header">
-          <h1 className="logo">
+          <h1 className="logo" onClick={()=>{(window.location.reload())}}>
             <Link to="/">ImgGG</Link>
           </h1>
           {!this.state.isLogin ? (
@@ -121,8 +120,7 @@ class App extends Component {
         <Switch>
           <Route path="/mypage" component={Mypage} />
           <Route path="/upload" component={Upload} />
-          <Route path="/info" component={Imginfo} />
-          <Route path="/img/info/:id" component={Imginfo} />
+          <Route path="/image/info/:id" component={Imginfo} />
         </Switch>
 
 

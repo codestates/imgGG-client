@@ -4,7 +4,7 @@ class LikedImage extends Component {
   render() {
     return (
       <div>
-        <ImgList />
+        <ImgList like={this.props.info}/>
       </div>
     );
   }

@@ -4,7 +4,6 @@
 }
 
 .header {
-    border: 2px solid red;
     display: flex;
     align-items: center;
     height: 50px;
@@ -22,11 +21,10 @@ span {
 }
 
 .img-list {
-    border: 2px solid blue;
     height: 300px;
     width: 300px;
     margin-top: 30px;
-    margin-left: 10px;
+    margin-left: 24px;
     float: left;
     padding: 0;
 }
