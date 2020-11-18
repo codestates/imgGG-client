@@ -5,7 +5,14 @@ import {IMGBB_API_KEY} from '../../config/config';
 class SetAvatar extends Component {
   state = {
     url: "",
+    view: "",
     error: "",
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      view: this.props.info.userinfo.url,
+    })
   }
 
   handleInputValue = (event) => {
@@ -22,33 +29,35 @@ class SetAvatar extends Component {
     }
     uploadImage(event.target.files[0])
     .then(res => {
+      console.log(res);
       this.setState({
-        url: res.data.data.display_url
-      })  
+        url: res.data.data.url,
+        view: res.data.data.url
+      })
+      console.log(this.state);
   })
-  .then(()=>{
-    console.log(this.state.url);
-  this.handleUpdate()})
 }
-  handleUpdate = () => {
 
+  handleUpdate = () => {
     axios.post("http://localhost:4000/user/changeprofile",
     {url: this.state.url},
     {withCredentials: true})
+    .then(()=>{
+      alert('프로일 이미지가 업데이트 되었습니다.');
+    })
   }
 
-
-
   render() {
+    console.log(this.props.info);
     return (
       <div className="avatar-upload">
         <h5>프로필 사진 변경</h5>
         <div className="avatar">
-          <img src={this.props.info}/>
+          <img src={this.state.view} width="300px" height="250px"/>
         </div>
         <div className="btn">
         <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
-          <button >변경</button>
+        <button disabled={this.state.url ? false : "disabled"} onClick={this.handleUpdate}>변경</button>
         </div>
       </div>
     );

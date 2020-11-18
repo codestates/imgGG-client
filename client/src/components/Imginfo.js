@@ -31,13 +31,13 @@ class Imginfo extends Component {
         </div>  
         <div className="img-info">
           <div>
-            <div>태그</div>
+            <div>태</div>
             {this.state.imginfo.tags ? this.state.imginfo.tags.map(v => (
               <div key={v.id} className="tag-name" >{v.tag_name}</div>
             )) : <div></div>} 
           </div>
         </div>
-      </div>
+        </div>
       </div>
     );
   }
