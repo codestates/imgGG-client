@@ -60,7 +60,7 @@ class Imginfo extends Component {
         <div className="img-info">
           <div>
             <div className="user-info">
-              {this.state.imginfo ? <><img className="profile" src={this.state.imginfo.user.user_image_url} width="50px" height="50px"/> 
+              {this.state.imginfo ? <><img className="profile" src={this.state.imginfo.user.user_image_url} width="50px" height="50px" alt="img"/> 
     <div className="user">{this.state.imginfo.user.username}</div>
     <div>{this.state.imginfo.user.email}</div>
               </>

@@ -89,30 +89,30 @@ class App extends Component {
           {!this.state.isLogin ? (
             <div className="menu">
               <div className="menu-item">
-                <span onClick={this.openSignin}>로그인</span>
-                <Signin open={this.state.signinOpen} close={this.closeSignin} handleResponseSuccess={this.handleResponseSuccess} />
+                <div onClick={this.openSignup} >회원가입</div>
+                <Signup open={this.state.signupOpen} close={this.closeSignup} handleSignupSuccess={this.handleSignupSuccess}/>
               </div>
               <div className="menu-item">
-                <span onClick={this.openSignup} >회원가입</span>
-                <Signup open={this.state.signupOpen} close={this.closeSignup} handleSignupSuccess={this.handleSignupSuccess}/>
+                <div onClick={this.openSignin}>로그인</div>
+                <Signin open={this.state.signinOpen} close={this.closeSignin} handleResponseSuccess={this.handleResponseSuccess} />
               </div>
             </div>
           ) : (
               <div className="menu">
-                <span onClick={this.handleLogout}>
-                  <Link to="/">로그아웃</Link>
-                </span>
-                <span>
+                <div className="menu-item">
                   <Link to={{
                     pathname: "/mypage",
                     state : {
                      userinfo: this.state.userinfo
                     },
                   }}>마이 페이지</Link>
-                </span>
-                <span>
+                </div>
+                <div className="menu-item" onClick={this.handleLogout}>
+                  <Link to="/">로그아웃</Link>
+                </div>
+                <div className="menu-item">
                   <Link to={{pathname:"/upload", state: {userinfo: this.state.userinfo}}}>업로드</Link>
-                </span>
+                </div>
               </div>
             )}
         </div>

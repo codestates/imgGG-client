@@ -8,7 +8,7 @@ const Search = (props) => {
     recommand.push(props.imglist.tag[i].tag_name);
   }
   for(let j =0 ; j < recommand.length; j++){
-    if(recommand[j].indexOf(props.imglist.value) !== -1 && recommand[j] !==props.imglist.value){
+    if(recommand[j].indexOf(props.imglist.value) !== -1){
       recommandTag.push(recommand[j]);
     }
   }
@@ -21,12 +21,12 @@ const Search = (props) => {
         value={props.imglist.value}
         onChange={props.handleInputChange}
       />
-        <button className="btn-listing" onClick={props.handleRecently}>{`${props.currentImg.recently ? '최신순' : '오래된순'}`}</button>
-        <button className="btn-listing" onClick={props.handleLike}>{`${!props.currentImg.likely ? '싫어요' : '좋아요'}`}</button>
+        <button className="btn-listing" onClick={props.handleRecently}>최신순</button>
+        <button className="btn-listing" onClick={props.handleLike}>좋아요순</button>
         <button className="btn-listing" onClick={props.handleGotoBack}>새로고침</button>
       <div className="recommand">
         <div className="recommand-tag">
-          {(recommandTag[0] && props.imglist.value !== '') ? <div>태그추천</div> : null}
+          {(recommandTag[0] && props.imglist.value !== '') ? <h3>태그추천</h3> : null}
           {(recommandTag[0] && props.imglist.value !== '') ? (recommandTag).map((tag,index) => (
         <span key={index} className="map-tag" onClick={()=>{
           document.querySelector(".form-control").value = tag; props.handleChangeRec();  recommandTag=null;
