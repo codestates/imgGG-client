@@ -112,7 +112,7 @@ class Upload extends React.Component {
             ))}
           </ul>
           <div className="upload-btn">
-            <button type='submit' onClick={this.handleSubmitImg}>업로드</button>
+            <button type='submit' disabled={this.state.previewURL ? false : 'disabled'} onClick={this.handleSubmitImg}>업로드</button>
           </div>
         </div>
       </div>

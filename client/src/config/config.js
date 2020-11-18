@@ -1,1 +1,1 @@
-export const IMGBB_API_KEY = "3090b737a2f36074a31258ded54b4c4f"
+export const IMGBB_API_KEY = "dac76ebb7a0143857b07e629d70c0266"
