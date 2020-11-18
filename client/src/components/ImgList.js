@@ -22,19 +22,45 @@ class ImgList extends Component {
   }
   
   componentDidMount = () => {
-    axios.post('http://localhost:4000/image/search/recently', {
+    if(this.props.upload){
+      axios.post('http://localhost:4000/image/search/recently', {
+        searchWord: null,
+        userId: this.props.upload.userinfo.id
     }, { withCredentials: true })
       .then((result) => {
-        this.setState({allImg: result.data, currentImg: result.data});
-        console.log(result)
+        this.setState({currentImg: result.data.images});
       })
       .catch(err => {
         this.setState({
           error: '사진이 없습니다'
         })
       })
+    } else if(this.props.like){
+      axios.get('http://localhost:4000/user/userlike', 
+      { withCredentials: true })
+        .then((result) => {
+          this.setState({currentImg: result.data.results});
+        })
+        .catch(err => {
+          this.setState({
+            error: '사진이 없습니다'
+          })
+        })  
+    } else {
+      axios.post('http://localhost:4000/image/search/recently', {
+      }, { withCredentials: true })
+        .then((result) => {
+          this.setState({allImg: result.data, currentImg: result.data});
+          console.log(result)
+        })
+        .catch(err => {
+          this.setState({
+            error: '사진이 없습니다'
+          })
+      })
+    }
 
-    axios.get('http://localhost:4000/image/tag',
+    axios.get('http://localhost:4000/image/tags',
     { withCredentials: true }
     )
     .then((result) => {
@@ -112,18 +138,18 @@ class ImgList extends Component {
 
  
   render() {
-    console.log(this.state);
     return( 
       <div>
+        {(this.props.like || this.props.upload) ? null : 
         <Search imglist={this.state} 
         handleInputChange={this.handleInputChange}  
         handleGotoBack={this.handleGotoBack}
         handleRecently={this.handleRecently}
         handleLike={this.handleLike}
-        handleChangeRec = {this.handleChangeRec}/>
-        {(this.state.currentImg) ? (this.state.currentImg.map((v) => (
+        handleChangeRec = {this.handleChangeRec}/>}
+        {(this.state.currentImg.length > 0) ? (this.state.currentImg.map((v) => (
          <div className="img-list" key={v.id}><ImgListEntry imglist={v} /></div>
-        ))): (<div>사진이없습니다</div>)}
+        ))): (<h1>이미지가 없습니다</h1>)}
       </div>
     );
   }
