@@ -61,8 +61,15 @@
     /* justify-content: center; */
 }
 
-.like-btn {
-}
+/* .wrap {
+    width:380px;
+    height:200px;
+    margin: 0 auto;
+    line-height: 1em;
+    margin-top: 100px;
+    background: #fff
+} */
+
 
 .tags {
     border: 2px solid black
@@ -79,7 +86,12 @@
     align-content: center;
 }
 
-.icon{
-    margin-right: 10px;
-    
+.like-btn {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
