@@ -1,17 +1,23 @@
 
 .search-bar {
-    height: 80px;
+    height: 350px;
     width: 100%;
     padding: 0;
-    border: 1px solid yellow;
     text-align: center;
     display: block;
+    background-image: url('./mypage/bg_01.jpg')
+}
+
+.btn {
+    height: 46px;
+    width: 50px;
+    margin-left: 15px;
 }
 
 .form-control {
     width: 500px;
-    height: 20px;
-    margin-top: 10px;
+    height: 40px;
+    margin-top: 130px;
 }
 
 .recommand {
