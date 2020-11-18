@@ -1,6 +1,6 @@
 
 .search-bar {
-    height: 350px;
+    height: 200px;
     width: 100%;
     padding: 0;
     text-align: center;
@@ -11,13 +11,13 @@
 .btn {
     height: 46px;
     width: 50px;
-    margin-left: 15px;
+    margin-left: 20px;
 }
 
 .form-control {
     width: 500px;
     height: 40px;
-    margin-top: 130px;
+    margin-top: 50px;
 }
 
 .recommand {
@@ -59,4 +59,9 @@
     padding: 2px;
     margin-bottom: 5px;
     margin-top: 2px;
+}
+
+.btn-listing {
+    height: 46px;
+    margin-left: 5px; 
 }

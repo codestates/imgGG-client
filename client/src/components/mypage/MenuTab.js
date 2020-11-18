@@ -27,7 +27,7 @@ class MenuTab extends Component {
         <ul className="tabs">
           {tabName.map((tab, i) => {
             return (
-              <li key={i} onClick={() => this.handleTabClick(i)}>
+              <li key={i} class="tabs-contents" onClick={() => this.handleTabClick(i)}>
                 {tab}
               </li>
             );
