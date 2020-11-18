@@ -11,7 +11,7 @@ class Imginfo extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/image/info/'+this.props.location.state.id,
+    axios.get('http://localhost:4000'+this.props.location.pathname,
     { withCredentials: true }
     )
     .then((result) => {
@@ -21,6 +21,7 @@ class Imginfo extends Component {
     }) 
   };
   render() {
+    console.log(this.props)
     return (
       <div>
           <div className="info-box">
@@ -35,6 +36,9 @@ class Imginfo extends Component {
             {this.state.imginfo.tags ? this.state.imginfo.tags.map(v => (
               <div key={v.id} className="tag-name" >{v.tag_name}</div>
             )) : <div></div>} 
+          </div>
+          <div>
+          {this.state.imginfo.user ? <h1>{this.state.imginfo.user.username}</h1> : <div></div>}
           </div>
         </div>
         </div>

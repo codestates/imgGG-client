@@ -9,7 +9,6 @@ class ImgList extends Component {
     this.state = {
       value: '',
       tag: [],
-      alluser: [],
       currentImg: [],
       allImg: [],
       error: ''
@@ -75,9 +74,7 @@ class ImgList extends Component {
   handleChangeRec() {
     let value = document.querySelector(".form-control").value;
     this.setState({value: value});
-    setTimeout(() => {
-      this.handleRecently();
-    }, 1);
+    this.handleRecently();
   }
 
   handleGotoBack() {
@@ -86,7 +83,7 @@ class ImgList extends Component {
       userId: ''
     }, { withCredentials: true })
       .then((result) => {
-        this.setState({allImg: result.data, currentImg: result.data});
+        this.setState({allImg: result.data, currentImg: result.data, value: ''});
         console.log(this.state)
       })
       .catch(err => {
@@ -94,7 +91,6 @@ class ImgList extends Component {
           error: '사진이 없습니다'
         })
       })
-      document.querySelector('.form-control').value = '';
   }
   handleLike() {
     axios.post('http://localhost:4000/image/search/like', {
@@ -110,7 +106,6 @@ class ImgList extends Component {
           error: '사진이 없습니다'
         })
       })
-      document.querySelector('.form-control').value = '';
   }
 
   handleRecently() {
