@@ -4,7 +4,6 @@ import './Search.css';
 const Search = (props) => {
   let recommand = [];
   let recommandTag = [];
-  
   for(let i =0 ; i < props.imglist.tag.length; i++){
     recommand.push(props.imglist.tag[i].tag_name);
   }
@@ -27,7 +26,7 @@ const Search = (props) => {
           {(recommandTag[0] && props.imglist.value !== '') ? <div>태그추천</div> : null}
           {(recommandTag[0] && props.imglist.value !== '') ? (recommandTag).map((tag,index) => (
         <span key={index} className="map-tag" onClick={()=>{
-          document.querySelector(".form-control").value = tag; props.handleChangeRec()
+          document.querySelector(".form-control").value = tag; props.handleChangeRec();  recommandTag=null;
         }}>{tag}</span>)) : null}
       </div>
       </div>
