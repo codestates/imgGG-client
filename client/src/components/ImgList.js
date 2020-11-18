@@ -9,7 +9,6 @@ class ImgList extends Component {
     this.state = {
       value: '',
       tag: [],
-      alluser: [],
       currentImg: [],
       allImg: [],
       error: ''
