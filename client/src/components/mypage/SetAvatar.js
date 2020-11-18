@@ -57,7 +57,7 @@ class SetAvatar extends Component {
         </div>
         <div className="btn">
         <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
-        <button disabled={this.state.url ? false : "disabled"} onClick={this.handleUpdate}>변경</button>
+        <button className="cbtn" disabled={this.state.url ? false : "disabled"} onClick={this.handleUpdate}>변경</button>
         </div>
       </div>
     );
