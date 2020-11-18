@@ -1,0 +1,1 @@
+export const IMGBB_API_KEY = "3090b737a2f36074a31258ded54b4c4f"
