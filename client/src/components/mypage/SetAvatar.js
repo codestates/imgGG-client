@@ -53,7 +53,7 @@ class SetAvatar extends Component {
       <div className="avatar-upload">
         <h5>프로필 사진 변경</h5>
         <div className="avatar">
-          <img src={this.state.view} width="300px" height="250px"/>
+          <img src={this.state.view} width="300px" height="250px" alt="img"/>
         </div>
         <div className="btn">
         <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
