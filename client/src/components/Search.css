@@ -18,6 +18,7 @@
     width: 500px;
     height: 40px;
     margin-top: 50px;
+    font-size: 18px;
 }
 
 .recommand {
@@ -25,7 +26,6 @@
     width: 500px;
     max-height: 100px;
     margin: auto;
-    margin-right: 70px;
     display: inline-flex;
     min-height: 0px;
 }
@@ -36,32 +36,23 @@
     text-align: left;
     width: 500px;
     min-height: 0px;
+    max-height: 65px;
     box-shadow: 0 4px 6px rgba(32,33,36,.28);
     list-style-type: none;
     margin: 0;
     padding: 0;
     border: 0;
     padding-left: 10px;
-    border-radius: 0 0 24px 24px;
-    overflow: hidden;
-    min-height: 0px;
-}
-.recommand-user {
-    background: #fff;
-    position: absolute;
-    text-align: left;
-    width: 500px;
-    min-height: 0px;
-    box-shadow: 0 4px 6px rgba(32,33,36,.28);
-    margin: 0;
-    padding: 0;
-    border: 0;
-    padding-left: 10px;
-    border-radius: 0 0 24px 24px;
     overflow: hidden;
     min-height: 0px;
 }
 
+h3{
+    padding: 0;
+    margin-top: 4px;
+    margin-left: 5px;
+    margin-bottom: 7px;
+}
 .map-tag {
     height: 20px;
     background-color: rgba(0, 0, 0, 0.4);
@@ -70,10 +61,9 @@
     color: white;
     min-width: 1px;
     float: left;
-    margin-left: 3px;
+    margin-left: 6px;
     padding: 2px;
     margin-bottom: 5px;
-    margin-top: 2px;
 }
 
 .btn-listing {

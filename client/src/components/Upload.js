@@ -14,6 +14,7 @@ class Upload extends React.Component {
       alltag: [],
       img: false,
       userinfo: this.props.location.state,
+      click: false,
       error: ''
     }
   }
@@ -47,7 +48,7 @@ class Upload extends React.Component {
     console.log(this.state.img)
     if (!this.state.img) {
       this.setState({
-        error: '사진을 추가하세요'
+        error: '사진을 추가하세요', click: true
       });
     } else {
       this.setState({ error: '' });
@@ -78,7 +79,7 @@ class Upload extends React.Component {
     const alltag = this.state.alltag;
     if(alltag.indexOf(tag) === -1 && tag !== ''){
       alltag.push(tag);
-      this.setState({ tag: null, alltag: alltag });
+      this.setState({ tag: null, alltag: alltag, });
     }
     let input = document.querySelector(".tag-input");
     input.value = '';
@@ -96,25 +97,32 @@ class Upload extends React.Component {
   render() {
     console.log(this.state)
     return (<div>
+      <div className="upload-logo">
+            <input className="tag-input" onChange={this.handleAddTag} placeholder="태그를 추가해 주세요"></input>
+            <button type='submit' onClick={this.handleAddAllTag} className="tag-button">추가</button>
+            <div className="upload-file" onClick={this.handleSubmitImg}>
+              <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
+              <button type='submit' className="upload-btn" >업로드</button>
+            </div>
+            {this.state.click ? <div className='click-btn'>업로드할 사진을 선택해주세요</div> : null}
+      </div>
+        <div>
+        <div className="usetag">
+            <div className='add-usetag'>
+              {(this.state.alltag.length !==0) ? <h3>추가된 태그</h3> : null}
+              {(this.state.alltag).map(v => (
+                <div key={v} className="tag-form">{v}
+                  <span onClick={this.deleteTag} className="delete-tag">✖</span>
+                </div>
+              ))}
+              </div>
+            </div>
+         </div>    
       <div className="upload-box">
         <div className="preview-box">
           {this.state.file.length !== 0 ? (<img alt="img" className="preview" src={this.state.previewURL}></img>) : (<div className='pic-preview'>사진 미리보기</div>)}
         </div>
-        <div className="upload-info">
-          <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
-          <input className="tag-input" onChange={this.handleAddTag} placeholder="태그입력"></input>
-          <button type='submit' onClick={this.handleAddAllTag}>추가</button>
-          <ul className='all-tag'>
-            {(this.state.alltag).map(v => (
-              <div key={v} className="tag-form">{v}
-                <span onClick={this.deleteTag} className="delete-tag">✖</span>
-              </div>
-            ))}
-          </ul>
-          <div className="upload-btn" onClick={this.handleSubmitImg}>
-            <button type='submit' disabled={this.state.previewURL ? false : 'disabled'}>업로드</button>
-          </div>
-        </div>
+        
       </div>
     </div>)
   }
