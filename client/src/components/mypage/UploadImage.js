@@ -5,7 +5,7 @@ class UploadImage extends Component {
   render() {
     return (
       <div>
-        <ImgList />
+        <ImgList upload={this.props.info}/>
       </div>
     );
   }
