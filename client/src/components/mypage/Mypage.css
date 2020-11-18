@@ -20,13 +20,21 @@
     height: 350px;
 }
 
-.tabs-wrapper ul {
-    border: 2px solid black;
-}
-
 .tabs li {
     list-style: none;
     display: inline-block;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.tabs-contents {
+
+    width: 100%;
+    color: cornsilk;
+}
+
+.tabs {    
+    font-size: 20px;
+    padding-top: 10px;
+    background-image: url('./bg_01.jpg');
 }

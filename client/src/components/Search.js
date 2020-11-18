@@ -21,6 +21,9 @@ const Search = (props) => {
         value={props.imglist.value}
         onChange={props.handleInputChange}
       />
+        <button className="btn-listing" onClick={props.handleRecently}>{`${props.currentImg.recently ? '최신순' : '오래된순'}`}</button>
+        <button className="btn-listing" onClick={props.handleLike}>{`${!props.currentImg.likely ? '싫어요' : '좋아요'}`}</button>
+        <button className="btn-listing" onClick={props.handleGotoBack}>새로고침</button>
       <div className="recommand">
         <div className="recommand-tag">
           {(recommandTag[0] && props.imglist.value !== '') ? <div>태그추천</div> : null}
@@ -29,11 +32,6 @@ const Search = (props) => {
           document.querySelector(".form-control").value = tag; props.handleChangeRec();  recommandTag=null;
         }}>{tag}</span>)) : null}
       </div>
-      </div>
-      <div>
-        <button onClick={props.handleRecently}>최신순</button>
-        <button onClick={props.handleLike}>좋아요순</button>
-        <button onClick={props.handleGotoBack}>새로고침</button>
       </div>
     </div>
   );
