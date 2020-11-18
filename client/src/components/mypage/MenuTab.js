@@ -12,15 +12,15 @@ class MenuTab extends Component {
 
   handleTabClick = (id) => {
     this.setState({ activeTab: id });
-  };
+  };  
   render() {
     const content = {
       0: <Profile info={this.props.info}/>,
-      1: <UploadImage />,
-      2: <LikedImage />,
+      1: <UploadImage info={this.props.info}/>,
+      2: <LikedImage info={this.props.info}/>,
     };
     const tabName = ['프로필', '업로드한 이미지', '좋아요 표시한 이미지'];
-
+    console.log(this.props.info)
     return (
       
       <div className="tabs-wrapper">

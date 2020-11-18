@@ -25,7 +25,7 @@
     width: 500px;
     max-height: 100px;
     margin: auto;
-    margin-right: 50px;
+    margin-right: 70px;
     display: inline-flex;
     min-height: 0px;
 }
@@ -38,6 +38,21 @@
     min-height: 0px;
     box-shadow: 0 4px 6px rgba(32,33,36,.28);
     list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    padding-left: 10px;
+    border-radius: 0 0 24px 24px;
+    overflow: hidden;
+    min-height: 0px;
+}
+.recommand-user {
+    background: #fff;
+    position: absolute;
+    text-align: left;
+    width: 500px;
+    min-height: 0px;
+    box-shadow: 0 4px 6px rgba(32,33,36,.28);
     margin: 0;
     padding: 0;
     border: 0;

@@ -1,93 +1,127 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import ImgListEntry from './ImgListEntry';
+import axios from 'axios';
 
 class ImgList extends Component {
   constructor(props){
     super(props);
     this.state = {
       value: '',
-      currentImg: props.imglist,
-      allImg: props.imglist,
-      recently: true,
-      likely: true
+      tag: [],
+      currentImg: [],
+      allImg: [],
+      error: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSearchClick = this.handleSearchClick.bind(this);
     this.handleGotoBack = this.handleGotoBack.bind(this);
     this.handleRecently = this.handleRecently.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleChangeRec = this.handleChangeRec.bind(this);
   }
+  
+  componentDidMount = () => {
+    if(this.props.upload){
+      axios.post('http://localhost:4000/image/search/recently', {
+        searchWord: null,
+        userId: this.props.upload.userinfo.id
+    }, { withCredentials: true })
+      .then((result) => {
+        this.setState({currentImg: result.data.images});
+      })
+      .catch(err => {
+        this.setState({
+          error: '사진이 없습니다'
+        })
+      })
+    } else if(this.props.like){
+      axios.get('http://localhost:4000/user/userlike', 
+      { withCredentials: true })
+        .then((result) => {
+          this.setState({currentImg: result.data.results});
+        })
+        .catch(err => {
+          this.setState({
+            error: '사진이 없습니다'
+          })
+        })  
+    } else {
+      axios.post('http://localhost:4000/image/search/recently', {
+      }, { withCredentials: true })
+        .then((result) => {
+          this.setState({allImg: result.data, currentImg: result.data});
+          console.log(result)
+        })
+        .catch(err => {
+          this.setState({
+            error: '사진이 없습니다'
+          })
+      })
+    }
+
+    axios.get('http://localhost:4000/image/tags',
+    { withCredentials: true }
+    )
+    .then((result) => {
+      this.setState({
+        tag: result.data
+      })
+      console.log(this.state);
+      
+    })
+  };
 
   handleChangeRec() {
     let value = document.querySelector(".form-control").value;
     this.setState({value: value});
-    setTimeout(() => {
-      this.handleSearchClick();
-    }, 1);
+    this.handleRecently();
   }
-
 
   handleGotoBack() {
-    let allImg = this.state.allImg;
-    this.setState({currentImg: allImg});
-    window.location.reload();
+    axios.post('http://localhost:4000/image/search/recently', {
+      searchWord: '',
+      userId: ''
+    }, { withCredentials: true })
+      .then((result) => {
+        this.setState({allImg: result.data, currentImg: result.data, value: ''});
+        console.log(this.state)
+      })
+      .catch(err => {
+        this.setState({
+          error: '사진이 없습니다'
+        })
+      })
   }
   handleLike() {
-    let currentImg = this.state.currentImg;
-    let likely = this.state.likely;
-    let recursion = (arr) => {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i + 1]) {
-          if (likely) {
-            if (arr[i].like < arr[i + 1].like) {
-              let a = arr[i]
-              arr[i] = arr[i + 1]
-              arr[i + 1] = a;
-              recursion(arr);
-            }
-          } else {
-            if (arr[i].like > arr[i + 1].like) {
-              let a = arr[i]
-              arr[i] = arr[i + 1]
-              arr[i + 1] = a;
-              recursion(arr);
-            }
-          } 
-        } else return;
-      }
-    }
-    recursion(currentImg);
-    this.setState({currentImg: currentImg, likely: !likely, recently: true})
+    axios.post('http://localhost:4000/image/search/like', {
+      searchWord: this.state.value,
+      userId: this.state.username
+    }, { withCredentials: true })
+      .then((result) => {
+        this.setState({currentImg: result.data});
+        console.log(this.state)
+      })
+      .catch(err => {
+        this.setState({
+          error: '사진이 없습니다'
+        })
+      })
   }
 
   handleRecently() {
-    let currentImg = this.state.currentImg;
-    let recently = this.state.recently;
-    let recursion = (arr) => {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i + 1]) {
-          if (recently) {
-            if (arr[i].id < arr[i + 1].id) {
-              let a = arr[i]
-              arr[i] = arr[i + 1]
-              arr[i + 1] = a;
-              recursion(arr);
-            }
-          } else {
-            if (arr[i].id > arr[i + 1].id) {
-              let a = arr[i]
-              arr[i] = arr[i + 1]
-              arr[i + 1] = a;
-              recursion(arr);
-            }
-          } 
-        } else return;
-      }
-    }
-    recursion(currentImg);
-    this.setState({currentImg: currentImg, recently: !recently, likely: true})
+    axios.post('http://localhost:4000/image/search/recently', {
+      searchWord: this.state.value,
+      userId: this.state.username
+    }, { withCredentials: true })
+      .then((result) => {
+        this.setState({currentImg: result.data});
+        console.log(this.state)
+      })
+      .catch(err => {
+        this.setState({
+          error: '사진이 없습니다'
+        })
+      })
   }
 
   handleInputChange(e) {
@@ -97,32 +131,20 @@ class ImgList extends Component {
     console.log(this.state)
   }
 
-  handleSearchClick() {
-    let changeImg = [];
-    let value = this.state.value;
-    let current = this.state.allImg;
-    for(let i =0; i < current.length; i++){
-      if(current[i].alltag.indexOf(value) >= 0){
-        changeImg.push(current[i]);
-      }
-    }
-    this.setState({currentImg: changeImg, value: ''});
-    console.log(this.state)
-  }
-
+ 
   render() {
-    return(
+    return( 
       <div>
-        <Search currentImg={this.state} 
-        handleInputChange={this.handleInputChange} 
-        handleSearchClick={this.handleSearchClick} 
+        {(this.props.like || this.props.upload) ? null : 
+        <Search imglist={this.state} 
+        handleInputChange={this.handleInputChange}  
         handleGotoBack={this.handleGotoBack}
         handleRecently={this.handleRecently}
         handleLike={this.handleLike}
-        handleChangeRec = {this.handleChangeRec}/>
-        {this.state.currentImg.map((v) => {
-        return <div className="img-list" key={v.id}><ImgListEntry allImg={this.props.imglist} imglist={v} /></div>
-      })}
+        handleChangeRec = {this.handleChangeRec}/>}
+        {(this.state.currentImg.length > 0) ? (this.state.currentImg.map((v) => (
+         <div className="img-list" key={v.id}><ImgListEntry imglist={v} /></div>
+        ))): (<h1>이미지가 없습니다</h1>)}
       </div>
     );
   }

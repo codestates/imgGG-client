@@ -57,14 +57,14 @@ class Upload extends React.Component {
         tags: tag_name
       }, {withCredentials: true})
       .then((result)=>{
-        console.log(result);
+        console.log()
+        this.props.history.push(`/image/info/${result.data.id}`)
       })
       .catch(err => {
         this.setState({
           error: '업로드할 사진이 없습니다'
         })
       })
-
     }
   }
 
@@ -94,7 +94,7 @@ class Upload extends React.Component {
   }
 
   render() {
-    console.log(this.state.userinfo)
+    console.log(this.state)
     return (<div>
       <div className="upload-box">
         <div className="preview-box">
@@ -111,8 +111,8 @@ class Upload extends React.Component {
               </div>
             ))}
           </ul>
-          <div className="upload-btn">
-            <button type='submit' onClick={this.handleSubmitImg}>업로드</button>
+          <div className="upload-btn" onClick={this.handleSubmitImg}>
+            <button type='submit' disabled={this.state.previewURL ? false : 'disabled'}>업로드</button>
           </div>
         </div>
       </div>
