@@ -6,7 +6,7 @@ class Mypage extends Component {
   render() {
     return (
 
-      <div>
+      <div className="top">
         <MenuTab info={this.props.location.state}/>
       </div>
     );

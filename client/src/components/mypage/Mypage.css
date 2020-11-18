@@ -23,18 +23,33 @@
 .tabs li {
     list-style: none;
     display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 1px;
 }
 
 .tabs-contents {
-
+    height: 67px;
     width: 100%;
     color: cornsilk;
 }
 
-.tabs {    
+.tabs {
+    margin-top: 1px;  
     font-size: 20px;
-    padding-top: 10px;
     background-image: url('./bg_01.jpg');
+}
+
+.top {
+    margin-top: 0px;
+}
+
+.change {
+    height: 47px;
+}
+
+.pwchange {
+    height: 47px;
+}
+
+.cbtn {
+    height: 47px;  
 }
