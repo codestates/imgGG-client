@@ -55,7 +55,13 @@ class SetPassword extends Component {
     console.log('password', this.props.info)
     return (
       <div className="set-password">
-        <h5>비밀번호 변경</h5>
+
+        <h3>유저 정보</h3>
+        <div className="user-inf">
+          <div className="user-em-id">이메일:  {this.props.info.userinfo.email}</div>
+          <div className="user-em-id">아이디:  {this.props.info.userinfo.username}</div>
+        </div>
+        <h3>비밀번호 변경</h3>
         <div>
           <input className="pwchange" type="password" placeholder="현재 비밀번호" onChange={this.handleInputValue("oldPassword")}></input>
         </div>

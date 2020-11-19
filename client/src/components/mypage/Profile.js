@@ -8,7 +8,7 @@ class Profile extends Component {
     return (
       <div>
         <SetAvatar info={this.props.info}/>
-        <SetPassword />
+        <SetPassword info={this.props.info}/>
       </div>
     );
   }
