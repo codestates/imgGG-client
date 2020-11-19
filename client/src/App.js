@@ -9,6 +9,7 @@ import './App.css';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import ImgList from './components/ImgList';
+const token = cookie.load('token');
 
 class App extends Component {
   state = {
@@ -19,14 +20,14 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    const token = cookie.load('token');
+    
     if(token) {
-      axios.get('http://localhost:4000/user/info', 
-      { withCredentials: true }
+      axios.get('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/info', 
+      { headers: {'token': token}, 
+      withCredentials: true }
       )
       .then((result)=>{
-        console.log(result.data)
-        this.setState({
+          this.setState({
           isLogin: true,
           userinfo: result.data
         })
@@ -34,9 +35,13 @@ class App extends Component {
     }
   }
 
-  handleResponseSuccess = () => {
-    axios.get('http://localhost:4000/user/info',
-    { withCredentials: true }
+  handleResponseSuccess = (token) => {
+    cookie.save('token',token);
+    axios.get('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/info',
+      { 
+        headers: {'token': token}, 
+        withCredentials: true 
+      }
     )
     .then((result) => {
       this.setState({
@@ -44,7 +49,7 @@ class App extends Component {
         signinOpen: false,
         userinfo: result.data
       });
-      console.log(this.state);
+      window.location.reload();
     }) 
   };
 
@@ -55,15 +60,8 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    
-    axios.post('http://localhost:4000/user/signout',
-    {},
-    { withCredentials: true })
-    .then(()=> {
-      this.setState({isLogin: false, userinfo: null});
-      this.props.history.push('/');
-      console.log(this.state);
-    });
+    cookie.remove('token');
+    window.location.reload("/");
   };
 
   openSignin = () => {

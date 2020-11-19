@@ -2,8 +2,8 @@ import React from "react";
 import "./Upload.css";
 import axios from 'axios'
 import { IMGBB_API_KEY } from '../config/config';
-
-
+import cookie from 'react-cookies';
+const token = cookie.load('token');
 class Upload extends React.Component {
   constructor(props) {
     super(props);
@@ -45,18 +45,19 @@ class Upload extends React.Component {
     const image_url = this.state.previewURL;
     const tag_name = this.state.alltag;
     const userId = this.state.userinfo.id
-    console.log(this.state.img)
     if (!this.state.img) {
       this.setState({
         error: '사진을 추가하세요', click: true
       });
     } else {
       this.setState({ error: '' });
-      axios.post("http://localhost:4000/image/post", {
+      axios.post("http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/post", {
         url: image_url,
         userId: userId,
         tags: tag_name
-      }, {withCredentials: true})
+      }, {
+        headers: {'token': token}, 
+        withCredentials: true})
       .then((result)=>{
         this.props.history.push(`/image/info/${result.data.id}`)
       })
@@ -70,20 +71,21 @@ class Upload extends React.Component {
 
   handleAddTag = (e) => {
     this.setState({ tag: e.target.value });
-    console.log(this.state);
   }
 
   handleAddAllTag = () => {
     const tag = this.state.tag;
-    const t = tag.trim();
+    let t;
+    if(tag !== null){
+      t = tag.trim();
+    }
     const alltag = this.state.alltag;
-    if(alltag.indexOf(t) === -1 && t !== ''){
+    if(alltag.indexOf(t) === -1 && tag !== null && tag[0]!== ' '){
       alltag.push(t);
       this.setState({ tag: null, alltag: alltag, });
     }
     let input = document.querySelector(".tag-input");
     input.value = '';
-    console.log(this.state);
   }
 
   deleteTag = (value) => {
@@ -91,11 +93,9 @@ class Upload extends React.Component {
     let idx = alltag.indexOf(value);
     alltag.splice(idx, 1);
     this.setState({alltag: alltag})
-    console.log(this.state)
   }
 
   render() {
-    console.log(this.state)
     return (<div>
       <div className="upload-logo">
             <input className="tag-input" onChange={this.handleAddTag} placeholder="태그를 추가해 주세요"></input>

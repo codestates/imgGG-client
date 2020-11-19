@@ -17,7 +17,6 @@ class Signup extends React.Component {
   
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
-    console.log(this.state);
   };
 
   handleClose = () => {
@@ -47,7 +46,7 @@ class Signup extends React.Component {
       })
     } else {
       this.setState({ error: "" });
-      axios.post("http://localhost:4000/user/signup", {
+      axios.post("http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/signup", {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username

@@ -24,7 +24,6 @@ class Signin extends React.Component {
 
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
-    console.log(this.state);
   };
 
 
@@ -35,13 +34,12 @@ class Signin extends React.Component {
       });
     } else {
       this.setState({ error: '' });
-      axios.post("http://localhost:4000/user/signin", {
+      axios.post("http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/signin", {
         email: this.state.email,
         password: this.state.password
       }, {withCredentials: true})
       .then((result)=>{
-        console.log(result);
-        this.props.handleResponseSuccess();
+        this.props.handleResponseSuccess(result.data.token);
       })
       .catch(err => {
         this.setState({

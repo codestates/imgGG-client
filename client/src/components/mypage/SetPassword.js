@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import cookie from 'react-cookies';
 
+const token = cookie.load('token');
 class SetPassword extends Component {
   state = {
     oldPassword: "",
@@ -11,7 +13,6 @@ class SetPassword extends Component {
 
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
-    console.log(this.state);
   };
 
   handleChangePassword = () => {
@@ -34,10 +35,12 @@ class SetPassword extends Component {
       })
     } else {
       this.setState({ error: "" });
-      axios.post("http://localhost:4000/user/changepw", {
+      axios.post("http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/changepw", {
         oldPassword: this.state.oldPassword,
         newPassword: this.state.newPassword
-      },{withCredentials: true})
+      },{
+        headers: {'token': token},
+        withCredentials: true})
         .then(() => {
           this.setState({
             error: "패스워드가 변경되었습니다"
@@ -52,7 +55,6 @@ class SetPassword extends Component {
   }
 
   render() {
-    console.log('password', this.props.info)
     return (
       <div className="set-password">
 

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Search from './Search';
 import ImgListEntry from './ImgListEntry';
 import axios from 'axios';
-
+import cookie from 'react-cookies'
+const token = cookie.load('token');
 class ImgList extends Component {
   constructor(props){
     super(props);
@@ -22,7 +23,7 @@ class ImgList extends Component {
   
   componentDidMount = () => {
     if(this.props.upload){
-      axios.post('http://localhost:4000/image/search/recently', {
+      axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/search/recently', {
         searchWord: null,
         userId: this.props.upload.userinfo.id
     }, { withCredentials: true })
@@ -35,8 +36,10 @@ class ImgList extends Component {
         })
       })
     } else if(this.props.like){
-      axios.get('http://localhost:4000/user/userlike', 
-      { withCredentials: true })
+      axios.get('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/userlike', 
+      { 
+        headers: {'token': token}, 
+        withCredentials: true })
         .then((result) => {
           this.setState({currentImg: result.data.results});
         })
@@ -46,12 +49,11 @@ class ImgList extends Component {
           })
         })  
     } else if(this.props.location.state){
-      axios.post('http://localhost:4000/image/search/recently', {
+      axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/search/recently', {
         searchWord: this.props.location.state.tags,
         userId: null
     }, { withCredentials: true })
       .then((result) => {
-        console.log()
         this.setState({currentImg: result.data});
       })
       .catch(err => {
@@ -60,11 +62,10 @@ class ImgList extends Component {
         })
       })
     } else {
-      axios.post('http://localhost:4000/image/search/recently', {
+      axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/search/recently', {
       }, { withCredentials: true })
         .then((result) => {
           this.setState({allImg: result.data, currentImg: result.data});
-          console.log(result)
         })
         .catch(err => {
           this.setState({
@@ -73,14 +74,13 @@ class ImgList extends Component {
       })
     }
 
-    axios.get('http://localhost:4000/image/tags',
+    axios.get('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/tags',
     { withCredentials: true }
     )
     .then((result) => {
       this.setState({
         tag: result.data
       })
-      console.log(this.state);
       
     })
   };
@@ -92,13 +92,12 @@ class ImgList extends Component {
   }
 
   handleGotoBack() {
-    axios.post('http://localhost:4000/image/search/recently', {
+    axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/search/recently', {
       searchWord: '',
       userId: ''
     }, { withCredentials: true })
       .then((result) => {
         this.setState({allImg: result.data, currentImg: result.data, value: ''});
-        console.log(this.state)
       })
       .catch(err => {
         this.setState({
@@ -107,13 +106,12 @@ class ImgList extends Component {
       })
   }
   handleLike() {
-    axios.post('http://localhost:4000/image/search/like', {
+    axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/search/like', {
       searchWord: document.querySelector(".form-control").value,
       userId: this.state.username
     }, { withCredentials: true })
       .then((result) => {
         this.setState({currentImg: result.data});
-        console.log(this.state)
       })
       .catch(err => {
         this.setState({
@@ -123,13 +121,12 @@ class ImgList extends Component {
   }
 
   handleRecently() {
-    axios.post('http://localhost:4000/image/search/recently', {
+    axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/search/recently', {
       searchWord: document.querySelector(".form-control").value,
       userId: this.state.username
     }, { withCredentials: true })
       .then((result) => {
         this.setState({currentImg: result.data});
-        console.log(this.state)
       })
       .catch(err => {
         this.setState({
@@ -142,7 +139,6 @@ class ImgList extends Component {
     this.setState({
       value: e.target.value,
     });
-    console.log(this.state)
   }
 
  
