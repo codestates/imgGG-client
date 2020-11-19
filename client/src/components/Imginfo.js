@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "./Imginfo.css"
 import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faThumbsUp} from "@fortawesome/free-solid-svg-icons";
+import {faThumbsUp, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import cookie from 'react-cookies';
 
 const token = cookie.load('token');
@@ -114,7 +115,10 @@ class Imginfo extends Component {
         </div>  
         <div className="img-info">
             <div className="user-info">
-              {this.state.imginfo ? <><img className="profile" src={this.state.imginfo.user.user_image_url} width="50px" height="50px" alt="img"/> 
+              {this.state.imginfo ? <>{this.state.imginfo.user.user_image_url ? 
+              <img className="profile" src={this.state.imginfo.user.user_image_url} width="50px" height="50px" alt="img"/>:
+              <div width="50px" height="50px"><FontAwesomeIcon icon={faUserCircle} size="3x"/></div>
+              } 
               <div><div className="user">{this.state.imginfo.user.username}</div>
               <div className="user">{this.state.imginfo.user.email}</div>
               </div>
