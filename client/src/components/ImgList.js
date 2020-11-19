@@ -45,6 +45,20 @@ class ImgList extends Component {
             error: '사진이 없습니다'
           })
         })  
+    } else if(this.props.location.state){
+      axios.post('http://localhost:4000/image/search/recently', {
+        searchWord: this.props.location.state.tags,
+        userId: null
+    }, { withCredentials: true })
+      .then((result) => {
+        console.log()
+        this.setState({currentImg: result.data});
+      })
+      .catch(err => {
+        this.setState({
+          error: '사진이 없습니다'
+        })
+      })
     } else {
       axios.post('http://localhost:4000/image/search/recently', {
       }, { withCredentials: true })

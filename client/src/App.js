@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Mainpage from './components/Mainpage';
 import Mypage from './components/mypage/Mypage';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import Signin from './components/Signin';
@@ -9,6 +8,7 @@ import Imginfo from './components/Imginfo';
 import './App.css';
 import axios from 'axios';
 import cookie from 'react-cookies';
+import ImgList from './components/ImgList';
 
 class App extends Component {
   state = {
@@ -116,14 +116,12 @@ class App extends Component {
               </div>
             )}
         </div>
-        <Route exact path="/" component={Mainpage} />
+        <Route exact path="/" component={ImgList} />
         <Switch>
           <Route path="/mypage" component={Mypage} />
           <Route path="/upload" component={Upload} />
           <Route path="/image/info/:id" component={Imginfo} />
         </Switch>
-
-
       </div>
     );
   }
