@@ -47,7 +47,7 @@ class Imginfo extends Component {
 
   render() {
 
-    console.log(this.props)
+    console.log(this.state.imginfo)
 
     return (
       <div>

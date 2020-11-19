@@ -1,55 +1,86 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
 .avatar-upload {
     box-sizing: border-box;
     float: left;
     width: 50%;
-    height: 350px;
+    padding-left: 20px;
+    margin-top: 50px;
+    height: 500px;
+    border-right-style: dashed;
+    border-right-color: gray;
 }
 
 .avatar {
-    height: 200px;
-    width: 200px;
-    margin-left: 85px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    height: 400px;
+    width: 400px;
+    line-height: 400px;
+    text-align:center;
+    box-sizing: border-box; 
+    align-content: center;
+    margin: auto;
+    padding: 0;
+}
+
+.avatar-img{
+    max-width: 370px;
+    max-height: 370px;
+    vertical-align: middle;
 }
 
 .set-password {
     box-sizing: border-box;
-    float: left;
+    float: right;
     width: 50%;
-    height: 350px;
+    padding-left: 30px;
+    margin-top: 50px;
+    height: 500px;
 }
-
-.tabs li {
-    list-style: none;
-    display: inline-block;
-    margin-left: 1px;
-}
-
 .tabs-contents {
-    height: 67px;
+    font-family: 'Nanum Pen Script', cursive;
+    margin-left: 60px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    display: inline;
+}.tabs-contents:hover{
+    color: red
+}
+
+.tabs {  
+    height: 200px;
     width: 100%;
-    color: cornsilk;
-}
-
-.tabs {
-    margin-top: 1px;  
-    font-size: 20px;
+    vertical-align: middle;
     background-image: url('./bg_01.jpg');
+    line-height: 200px;
 }
-
-.top {
-    margin-top: 0px;
+.btn {
+    display: inline;
+    height: 100px;
 }
-
 .change {
-    height: 47px;
+    margin-top: 10px;
+    height: 30px;
+    width: 50px;
 }
 
 .pwchange {
-    height: 47px;
+    height: 30px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 .cbtn {
-    height: 47px;  
+    height: 35px;
+    width: 60px; 
+}
+
+.user-inf {
+    height: 120px;
+}
+
+.user-em-id {
+    font-size: 20px;
+    margin-top: 15px;
+    word-spacing: 20px;
 }

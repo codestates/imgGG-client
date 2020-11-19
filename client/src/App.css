@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
 .App {
     max-width: 1000px;
     margin: auto;
@@ -49,4 +51,13 @@ a {
     float: right;
     margin-top: 35px;
     padding: 0;
+}
+
+.no-img {
+    margin-top: 50px;
+    margin-left: 40px;
+    font-family: 'Nanum Pen Script', cursive;
+    background-color: white;
+    color: black;
+    font-size: 40px;
 }

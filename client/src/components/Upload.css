@@ -7,7 +7,6 @@
     text-align: center;
     display: block;
     background-image: url('./mypage/bg_01.jpg');
-    margin-bottom: 10px;
 }
 
 .tag-button{
@@ -26,11 +25,13 @@
 .upload-file {
     margin: auto;
     width: 500px;
-    margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
+    height: 120px;
 }
 
 .upload-btn {
+    margin: auto;
     height: 40px;
     width: 60px;
     margin-left: 20px;
@@ -38,6 +39,7 @@
 .click-btn {
     font-family: 'Nanum Pen Script', cursive;
     background-color: white;
+    text-align: center;
     color: red;
     font-size: 18px;
 }
@@ -69,7 +71,6 @@
 
 .upload-box {
     width: 100%;
-    margin-top: 80px;
     height: 600px;
     text-align:center;
     box-sizing: border-box; 
@@ -111,7 +112,7 @@
 .tag-form {
     height: 25px;
     background-color: rgba(0, 0, 0, 0.4);
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 8px;
     color: white;
     min-width: 1px;

@@ -99,7 +99,7 @@ class App extends Component {
             </div>
           ) : (
               <div className="menu">
-                <div className="menu-item">
+                <div className="menu-item" onClick={()=>{(window.location.reload('/mypage'))}} >
                   <Link to={{
                     pathname: "/mypage",
                     state : {
@@ -110,7 +110,7 @@ class App extends Component {
                 <div className="menu-item" onClick={this.handleLogout}>
                   <Link to="/">로그아웃</Link>
                 </div>
-                <div className="menu-item">
+                <div className="menu-item" onClick={()=>{(window.location.reload('/upload'))}}>
                   <Link to={{pathname:"/upload", state: {userinfo: this.state.userinfo}}}>업로드</Link>
                 </div>
               </div>

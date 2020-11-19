@@ -58,7 +58,6 @@ class Upload extends React.Component {
         tags: tag_name
       }, {withCredentials: true})
       .then((result)=>{
-        console.log()
         this.props.history.push(`/image/info/${result.data.id}`)
       })
       .catch(err => {
@@ -75,10 +74,11 @@ class Upload extends React.Component {
   }
 
   handleAddAllTag = () => {
-    const tag = this.state.tag
+    const tag = this.state.tag;
+    const t = tag.trim();
     const alltag = this.state.alltag;
-    if(alltag.indexOf(tag) === -1 && tag !== ''){
-      alltag.push(tag);
+    if(alltag.indexOf(t) === -1 && t !== ''){
+      alltag.push(t);
       this.setState({ tag: null, alltag: alltag, });
     }
     let input = document.querySelector(".tag-input");
@@ -99,23 +99,24 @@ class Upload extends React.Component {
     return (<div>
       <div className="upload-logo">
             <input className="tag-input" onChange={this.handleAddTag} placeholder="태그를 추가해 주세요"></input>
-            <button type='submit' onClick={this.handleAddAllTag} className="tag-button">추가</button>
-            <div className="upload-file" onClick={this.handleSubmitImg}>
-              <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
-              <button type='submit' className="upload-btn" >업로드</button>
-            </div>
-            {this.state.click ? <div className='click-btn'>업로드할 사진을 선택해주세요</div> : null}
-      </div>
-        <div>
-        <div className="usetag">
+        <button type='submit' onClick={this.handleAddAllTag} className="tag-button">추가</button>
+            <div className="usetag">
             <div className='add-usetag'>
-              {(this.state.alltag.length !==0) ? <h3>추가된 태그</h3> : null}
+              {(this.state.alltag.length !== 0) ? <h3>추가된 태그</h3> : null}
               {(this.state.alltag).map(v => (
                 <div key={v} className="tag-form">{v}
                   <span onClick={this.deleteTag} className="delete-tag">✖</span>
                 </div>
               ))}
               </div>
+            </div>
+            
+      </div>
+        <div>
+            <div className="upload-file" >
+              <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
+              <button type='submit' onClick={this.handleSubmitImg} className="upload-btn" >업로드</button>
+              {this.state.click ? <div className='click-btn'>업로드할 사진을 선택해주세요</div> : null}
             </div>
          </div>    
       <div className="upload-box">

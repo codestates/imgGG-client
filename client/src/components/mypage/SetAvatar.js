@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';  
-import {IMGBB_API_KEY} from '../../config/config';
+import axios from 'axios';
+import { IMGBB_API_KEY } from '../../config/config';
 
 class SetAvatar extends Component {
   state = {
@@ -20,7 +20,7 @@ class SetAvatar extends Component {
       let body = new FormData()
       body.set('key', IMGBB_API_KEY)
       body.append('image', img)
-  
+
       return (axios({
         method: 'post',
         url: 'https://api.imgbb.com/1/upload',
@@ -28,36 +28,36 @@ class SetAvatar extends Component {
       }))
     }
     uploadImage(event.target.files[0])
-    .then(res => {
-      console.log(res);
-      this.setState({
-        url: res.data.data.url,
-        view: res.data.data.url
+      .then(res => {
+        console.log(res);
+        this.setState({
+          url: res.data.data.url,
+          view: res.data.data.url
+        })
+        console.log(this.state);
       })
-      console.log(this.state);
-  })
-}
+  }
 
   handleUpdate = () => {
     axios.post("http://localhost:4000/user/changeprofile",
-    {url: this.state.url},
-    {withCredentials: true})
-    .then(()=>{
-      alert('프로일 이미지가 업데이트 되었습니다.');
-    })
+      { url: this.state.url },
+      { withCredentials: true })
+      .then(() => {
+        alert('프로일 이미지가 업데이트 되었습니다.');
+      })
   }
 
   render() {
     console.log(this.props.info);
     return (
       <div className="avatar-upload">
-        <h5>프로필 사진 변경</h5>
+        <h3>프로필 사진 변경</h3>
         <div className="avatar">
-          <img src={this.state.view} width="300px" height="250px" alt="img"/>
+          {this.state.view ? <img src={this.state.view} className="avatar-img" alt="img" /> : <div>없음</div>}
         </div>
         <div className="btn">
-        <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-btn"></input>
-        <button className="cbtn" disabled={this.state.url ? false : "disabled"} onClick={this.handleUpdate}>변경</button>
+          <input type="file" name="file" accept="image/*" onChange={this.handleInputValue} className="input-bn"></input>
+          <button className="cbtn" disabled={this.state.url ? false : "disabled"} onClick={this.handleUpdate}>변경</button>
         </div>
       </div>
     );
