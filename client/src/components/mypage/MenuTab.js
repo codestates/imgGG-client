@@ -24,15 +24,15 @@ class MenuTab extends Component {
     return (
       
       <div className="tabs-wrapper">
-        <ul className="tabs">
+        <div className="tabs">
           {tabName.map((tab, i) => {
             return (
-              <li key={i} class="tabs-contents" onClick={() => this.handleTabClick(i)}>
+              <div key={i} className="tabs-contents" onClick={() => this.handleTabClick(i)}>
                 {tab}
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
         <div className="content">{content[this.state.activeTab]}</div>
       </div>
     );

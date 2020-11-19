@@ -1,9 +1,23 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
+.top-info{
+    height: 200px;
+    width: 100%;
+    line-height: 200px;
+    padding: 0;
+    display: block;
+    background-image: url('./mypage/bg_01.jpg');
+}
+.imginfo{
+    font-family: 'Nanum Pen Script', cursive;
+    margin-left: 60px;
+    color: white;
+    font-size: 50px;
+}
 .info-box {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     height: 400px;
-    
     margin-top: 50px;
     box-sizing: border-box;
     display: flex;   
@@ -27,7 +41,7 @@
 }
 .img-detail {
     max-width: 550px;
-    height: 300px;
+    max-height: 550px;
     margin-bottom: 10px;
 }
 .img-info {
@@ -50,7 +64,7 @@
     color: white;
     min-width: 1px;
     float: left;
-    margin-left: 3px;
+    margin-left: 7px;
     padding: 2px;
     margin-bottom: 3px;
 }
@@ -59,12 +73,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 60%;
+    margin-bottom: 10%;
+    border-bottom-style: dotted;
 }
 
 
 .tags {
-    
+    margin-top: 20px;
 }
 
 .profile {

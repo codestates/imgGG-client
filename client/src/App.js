@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Mainpage from './components/Mainpage';
 import Mypage from './components/mypage/Mypage';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import Signin from './components/Signin';
@@ -9,6 +8,7 @@ import Imginfo from './components/Imginfo';
 import './App.css';
 import axios from 'axios';
 import cookie from 'react-cookies';
+import ImgList from './components/ImgList';
 
 class App extends Component {
   state = {
@@ -99,7 +99,7 @@ class App extends Component {
             </div>
           ) : (
               <div className="menu">
-                <div className="menu-item">
+                <div className="menu-item" onClick={()=>{(window.location.reload('/mypage'))}} >
                   <Link to={{
                     pathname: "/mypage",
                     state : {
@@ -110,20 +110,18 @@ class App extends Component {
                 <div className="menu-item" onClick={this.handleLogout}>
                   <Link to="/">로그아웃</Link>
                 </div>
-                <div className="menu-item">
+                <div className="menu-item" onClick={()=>{(window.location.reload('/upload'))}}>
                   <Link to={{pathname:"/upload", state: {userinfo: this.state.userinfo}}}>업로드</Link>
                 </div>
               </div>
             )}
         </div>
-        <Route exact path="/" component={Mainpage} />
+        <Route exact path="/" component={ImgList} />
         <Switch>
           <Route path="/mypage" component={Mypage} />
           <Route path="/upload" component={Upload} />
           <Route path="/image/info/:id" component={Imginfo} />
         </Switch>
-
-
       </div>
     );
   }

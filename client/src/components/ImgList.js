@@ -45,6 +45,20 @@ class ImgList extends Component {
             error: '사진이 없습니다'
           })
         })  
+    } else if(this.props.location.state){
+      axios.post('http://localhost:4000/image/search/recently', {
+        searchWord: this.props.location.state.tags,
+        userId: null
+    }, { withCredentials: true })
+      .then((result) => {
+        console.log()
+        this.setState({currentImg: result.data});
+      })
+      .catch(err => {
+        this.setState({
+          error: '사진이 없습니다'
+        })
+      })
     } else {
       axios.post('http://localhost:4000/image/search/recently', {
       }, { withCredentials: true })
@@ -94,7 +108,7 @@ class ImgList extends Component {
   }
   handleLike() {
     axios.post('http://localhost:4000/image/search/like', {
-      searchWord: this.state.value,
+      searchWord: document.querySelector(".form-control").value,
       userId: this.state.username
     }, { withCredentials: true })
       .then((result) => {
@@ -110,7 +124,7 @@ class ImgList extends Component {
 
   handleRecently() {
     axios.post('http://localhost:4000/image/search/recently', {
-      searchWord: this.state.value,
+      searchWord: document.querySelector(".form-control").value,
       userId: this.state.username
     }, { withCredentials: true })
       .then((result) => {
@@ -144,7 +158,7 @@ class ImgList extends Component {
         handleChangeRec = {this.handleChangeRec}/>}
         {(this.state.currentImg.length > 0) ? (this.state.currentImg.map((v) => (
          <div className="img-list" key={v.id}><ImgListEntry imglist={v} /></div>
-        ))): (<h1>이미지가 없습니다</h1>)}
+        ))): (<div className="no-img">이미지가 없습니다</div>)}
       </div>
     );
   }
