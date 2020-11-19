@@ -75,9 +75,12 @@ class Upload extends React.Component {
 
   handleAddAllTag = () => {
     const tag = this.state.tag;
-    const t = tag.trim();
+    let t;
+    if(tag !== null){
+      t = tag.trim();
+    }
     const alltag = this.state.alltag;
-    if(alltag.indexOf(t) === -1 && t !== ''){
+    if(alltag.indexOf(t) === -1 && tag !== null && tag[0]!== ' '){
       alltag.push(t);
       this.setState({ tag: null, alltag: alltag, });
     }
