@@ -7,7 +7,6 @@ import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import cookie from 'react-cookies';
 import {Link} from 'react-router-dom';
 
-
 const token = cookie.load('token');
 
 class Imginfo extends Component {
@@ -15,7 +14,7 @@ class Imginfo extends Component {
     super(props);
     this.state = {
       imginfo: '',
-      isLike: false,
+      isLike: true,
       likeCount: '',
       isLogin: false,
       userId: '',
@@ -24,8 +23,11 @@ class Imginfo extends Component {
 
   componentDidMount() {
     if(token) {
-      axios.get('http://localhost:4000/user/info',
-      { withCredentials: true})
+      axios.get('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/info',
+      { 
+        headers: {'token': token}, 
+        withCredentials: true,
+      })
       .then(result => {
         this.setState({
           isLogin: true,
@@ -33,8 +35,9 @@ class Imginfo extends Component {
         })
       });
     }
-    axios.get('http://localhost:4000'+this.props.location.pathname,
-    { withCredentials: true }
+    axios.get('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com'+this.props.location.pathname,
+    { headers: {'token': token}, 
+      withCredentials: true }
     )
     .then((result) => { this.setState({
       imginfo: result.data,
@@ -53,29 +56,28 @@ class Imginfo extends Component {
   
   handleLike = () => {
     if(token){
-    axios.post('http://localhost:4000/image/like',
+    axios.post('http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/image/like',
     {imageId: this.state.imginfo.id},
-    {withCredentials: true})
-    .then(()=>{
+    {
+      headers: {'token': token}, 
+      withCredentials: true})
+    .then((res)=>{
     if(this.state.isLike){
     this.setState({
       isLike: false,
-      likeCount: this.state.likeCount-1
+      likeCount: res.data.like_count
     })}else{
       this.setState({
         isLike: true,
-        likeCount: this.state.likeCount+1
+        likeCount: res.data.like_count
       })
     }})
+  }else{
+    alert('로그인 후 이용해주세요');
   }
-  }
-
-  handleTagClick = () => {
-    
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <div className='top-info'>

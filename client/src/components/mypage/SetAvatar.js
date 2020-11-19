@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { IMGBB_API_KEY } from '../../config/config';
+import cookie from 'react-cookies';
 
+const token = cookie.load('token');
 class SetAvatar extends Component {
   state = {
     url: "",
@@ -29,26 +31,24 @@ class SetAvatar extends Component {
     }
     uploadImage(event.target.files[0])
       .then(res => {
-        console.log(res);
         this.setState({
           url: res.data.data.url,
           view: res.data.data.url
         })
-        console.log(this.state);
       })
   }
 
   handleUpdate = () => {
-    axios.post("http://localhost:4000/user/changeprofile",
+    axios.post("http://ec2-13-209-73-178.ap-northeast-2.compute.amazonaws.com/user/changeprofile",
       { url: this.state.url },
-      { withCredentials: true })
+      { headers: {'token': token}, 
+        withCredentials: true })
       .then(() => {
-        alert('프로일 이미지가 업데이트 되었습니다.');
+        alert('프로필 이미지가 업데이트 되었습니다.');
       })
   }
 
   render() {
-    console.log(this.props.info);
     return (
       <div className="avatar-upload">
         <h3>프로필 사진 변경</h3>

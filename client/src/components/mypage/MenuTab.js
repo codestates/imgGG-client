@@ -20,7 +20,6 @@ class MenuTab extends Component {
       2: <LikedImage info={this.props.info}/>,
     };
     const tabName = ['프로필', '업로드한 이미지', '좋아요 표시한 이미지'];
-    console.log(this.props.info)
     return (
       
       <div className="tabs-wrapper">
