@@ -1,0 +1,72 @@
+
+.search-bar {
+    height: 200px;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    display: block;
+    background-image: url('./mypage/bg_01.jpg')
+}
+
+.btn {
+    height: 46px;
+    width: 50px;
+    margin-left: 20px;
+}
+
+.form-control {
+    width: 500px;
+    height: 40px;
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+.recommand {
+    overflow: hidden;
+    width: 500px;
+    max-height: 100px;
+    margin: auto;
+    display: inline-flex;
+    min-height: 0px;
+}
+
+.recommand-tag {
+    background: #fff;
+    position: absolute;
+    text-align: left;
+    width: 500px;
+    min-height: 0px;
+    max-height: 65px;
+    box-shadow: 0 4px 6px rgba(32,33,36,.28);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    padding-left: 10px;
+    overflow: hidden;
+    min-height: 0px;
+}
+
+h3{
+    padding: 0;
+    margin-top: 4px;
+    margin-left: 5px;
+    margin-bottom: 7px;
+}
+.map-tag {
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    border-radius: 8px;
+    color: white;
+    min-width: 1px;
+    float: left;
+    margin-left: 6px;
+    padding: 2px;
+    margin-bottom: 5px;
+}
+
+.btn-listing {
+    height: 46px;
+    margin-left: 5px; 
+}

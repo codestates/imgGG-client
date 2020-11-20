@@ -1,0 +1,63 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+.App {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.header {
+    align-items: center;
+    height: 70px;
+    padding: 0;
+    align-content: center;
+}
+
+.logo {
+    margin-left: 30px;
+    display:inline-flex;
+}
+
+.img-list {
+    height: 300px;
+    width: 300px;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 30px;
+    margin-left: 24px;
+    float: left;
+    padding: 0;
+}
+
+.imagefile {
+    height: 300px;
+    width: 300px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu-item {
+    width: 100px;
+    float: right;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.menu {
+    float: right;
+    margin-top: 35px;
+    padding: 0;
+}
+
+.no-img {
+    margin-top: 50px;
+    margin-left: 40px;
+    font-family: 'Nanum Pen Script', cursive;
+    background-color: white;
+    color: black;
+    font-size: 40px;
+}

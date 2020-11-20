@@ -1,0 +1,114 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+.top-info{
+    height: 200px;
+    width: 100%;
+    line-height: 200px;
+    padding: 0;
+    display: block;
+    background-image: url('./mypage/bg_01.jpg');
+}
+.imginfo{
+    font-family: 'Nanum Pen Script', cursive;
+    margin-left: 60px;
+    color: white;
+    font-size: 50px;
+}
+.info-box {
+    margin: 0 auto;
+    width: 90%;
+    height: 400px;
+    margin-top: 50px;
+    box-sizing: border-box;
+    display: flex;   
+}
+
+.img-box {
+    width: 570px;
+    height: 90%;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    font-size: large;
+    /* line-height:570px; */
+    display:block;
+    text-align:center;
+    margin-top: 10px;
+    float: left;
+    margin-right: 20px;
+}
+
+.pic-preview{
+    vertical-align: middle;
+}
+.img-detail {
+    max-width: 550px;
+    max-height: 550px;
+    margin-bottom: 10px;
+}
+.img-info {
+    box-sizing: border-box;
+    float: left;
+    width: 35%;
+    height: 90%;
+    margin-top: 10px;
+    margin-left: 30px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+
+.tag-name {
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    border-radius: 8px;
+    color: white;
+    min-width: 1px;
+    float: left;
+    margin-left: 7px;
+    padding: 2px;
+    margin-bottom: 3px;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10%;
+    border-bottom-style: dotted;
+}
+
+
+.tags {
+    margin-top: 20px;
+}
+
+.profile {
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+}
+
+.user{
+    margin: 5px;
+}
+
+.like-btn {
+    border-radius: 10%;
+    margin: 0 auto;
+    width: 50px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.4);;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-direction: column; */
+    cursor: pointer;
+}
+
+.count {
+    color: white;
+}
+
+.active {
+    background-color: skyblue;
+}
